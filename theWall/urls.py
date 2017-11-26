@@ -1,7 +1,4 @@
-from django.conf.urls import include, url
-from django.conf import settings
-from django.views.static import serve
-from django.conf.urls.static import static
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
@@ -10,4 +7,5 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', views.index, name="index"),
+    url(r'^decrypt/$', views.decrypt, name="decrypt")
 ]

@@ -1,8 +1,8 @@
-import datetime
 from django.db import models
-from django.utils import timezone
 
 # Create your models here.
+
+
 def rotn(char, rot):
     char = chr((ord(char)+ord(rot) - 65))
     if ord(char) > ord('Z'):
@@ -11,6 +11,7 @@ def rotn(char, rot):
         char = chr( val )
 
     return char
+
 
 def rotBack(char, rot):
     char = chr((ord(char) - (ord(rot) - 65)))
@@ -21,6 +22,7 @@ def rotBack(char, rot):
             val = val - 38
         char = chr(val)
     return char
+
 
 def vigEncrypt(plainText, key):
     plainText = plainText.upper()
@@ -36,6 +38,7 @@ def vigEncrypt(plainText, key):
     for i in range(msgLen):
         cipherText.append(rotn(plainText[i], keyAry[i]))
     return "".join(cipherText)
+
 
 def vigDecrypt(cipherText, key):
     key = key.upper()
@@ -59,4 +62,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.content
-
