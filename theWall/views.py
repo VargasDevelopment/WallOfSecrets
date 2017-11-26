@@ -6,6 +6,14 @@ from theWall.models import *
 
 # Create your views here.
 
+'''
+Function: index()
+
+Description:
+This function is django specific. It represents the operations that happen when the url with the same name as the
+function is requested. This specific function handles the home page. It handles "post" requests and saves
+data to the database which gets displayed to the user.
+'''
 def index(request):
     rc = RequestContext(request)
     posts = Post.objects.all()
@@ -31,6 +39,14 @@ def index(request):
     return response
 
 
+'''
+Function: index()
+
+Description:
+This function is django specific. It represents the operations that happen when the url with the same name as the
+function is requested. This specific function handles the decryption page. It handles "post" requests and modifies
+data in the database without saving it permanently so that the user can see if their key decrypted any message.
+'''
 def decrypt(request):
     rc = RequestContext(request)
     posts = Post.objects.all()
