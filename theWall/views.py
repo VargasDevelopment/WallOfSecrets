@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from .forms import PostForm
 from theWall.models import Post
+from theWall.models import *
 
 # Create your views here.
 
@@ -15,7 +16,9 @@ def index(request):
         form = PostForm(data=request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.content = "nope" # replace this with the cipher.
+            post.content = post.content.replace(" ","")
+            post.key = post.key.replace(" ", "")
+            post.content = vigEncrypt(post.content, post.key)
             post.save()
 
             return HttpResponseRedirect('/')

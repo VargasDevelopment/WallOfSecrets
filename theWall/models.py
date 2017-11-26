@@ -3,12 +3,12 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
-def rotn(self, char, rot):
-    char = chr((ord(char) + ord(rot) - 65))
+def rotn(char, rot):
+    char = chr((ord(char)+ord(rot) - 65))
     if ord(char) > ord('Z'):
         val = ord(char) - ord('Z')
         val = val + (ord('A') - 1)
-        char = chr(val)
+        char = chr( val )
 
     return char
 
@@ -22,7 +22,7 @@ def rotBack(char, rot):
         char = chr(val)
     return char
 
-def vigenere_encrypt(self, plainText, key):
+def vigEncrypt(plainText, key):
     plainText = plainText.upper()
     key = key.upper()
     keyAry = []
@@ -31,7 +31,7 @@ def vigenere_encrypt(self, plainText, key):
     keyLen = len(key)
 
     for i in range(msgLen):
-        keyAry.append(key[i % keyLen])
+        keyAry.append(key[i%keyLen])
 
     for i in range(msgLen):
         cipherText.append(rotn(plainText[i], keyAry[i]))
@@ -54,13 +54,9 @@ def vigDecrypt(cipherText, key):
 
 
 class Post(models.Model):
-    content = models.TextField()
+    content = models.CharField(max_length=280)
     key = models.CharField(max_length=140)
 
     def __str__(self):
         return self.content
-
-    def publish(self):
-        self.content = vigenere_encrypt(self.content, self.key)
-        self.save()
 
