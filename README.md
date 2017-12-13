@@ -7,5 +7,9 @@ This project was created to showcase the utility and limitations of the [Vigener
 ## To Run
 Clone the project into a directory of your chooosing. Then, in a shell, navigate to the directory and type "python manage.py runserver 8000". The webserver will start serving on port 8000. You can navigate to 127.0.0.1:8000 to interact with the project.
 
+## Requirements
+Python 3+
+Django 1.8
+
 
 
